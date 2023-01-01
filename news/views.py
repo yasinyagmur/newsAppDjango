@@ -4,7 +4,7 @@ from .models import Post
 from .serializers import PostSerializers
 from .pagination import CustomCursorPagination
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.filters import SearchFilter,OrderingFilter
+from rest_framework.filters import SearchFilter
 
 
 def home(request):
@@ -15,14 +15,14 @@ class PostList(ListCreateAPIView):
     serializer_class = PostSerializers
 
     # pagination
-    pagination_class = CustomCursorPagination
+    pagination_class = CustomCursorPagination # ordering filter ile birlikte kullanımda sıkıtı yaptı
     
     # filter 
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_fields = ['category_id','status']  # setting ile views de burası birlikte çalışıyor filtreleme için
     
     # search
-    # search_fields = ['title', 'category_id','status']
+    search_fields = ['title', 'status']
 
 
 class PostDetails(RetrieveUpdateDestroyAPIView):
