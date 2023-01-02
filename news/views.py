@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from rest_framework.generics import ListCreateAPIView,RetrieveUpdateDestroyAPIView
-from .models import Post
-from .serializers import PostSerializers
+from .models import Post,Category
+from .serializers import PostSerializers,CategorySerializers
 from .pagination import CustomCursorPagination
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
@@ -29,3 +29,7 @@ class PostDetails(RetrieveUpdateDestroyAPIView):
 
     queryset = Post.objects.all()
     serializer_class = PostSerializers
+
+class CategoryView(ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializers

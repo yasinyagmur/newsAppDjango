@@ -6,7 +6,7 @@ class CategorySerializers(serializers.ModelSerializer):
 
     class Meta:
         model =Category
-        fields = ['name']
+        fields = ['name','id']
     
     # blog_posts = CategorySerializers(many=True)
     # blog_posts = serializers.HyperlinkedRelatedField(
